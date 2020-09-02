@@ -7,5 +7,5 @@
   },
   "topics_sub": ["service/server001"],
   "topics_pub": ["service/client001"],
-  "command": "temparautre#+"
+  "command": "temperater#+"
 }

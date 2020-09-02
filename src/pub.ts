@@ -12,9 +12,10 @@ export const ClientPub = (Info: ClientInfo) => {
 
   const recursedMessage = () => {
     for (let i = 0; i < config.topics_pub.length; i++) {
-      client.publish(config.topics_pub[i], `Name : ${Info.name}\n`);
-      client.publish(config.topics_pub[i], `Temperature : ${Info.temperature}`);
-      client.publish(config.topics_pub[i], `Humadity : ${Info.humadity}`);
+      client.publish(
+        config.topics_pub[i],
+        `Name : ${Info.name}\nTemperature : ${Info.temperature}\nHumadity : ${Info.humadity}`
+      );
     }
     setTimeout(recursedMessage, 1000);
   };
@@ -25,14 +26,13 @@ export const ServerPub = (Info: ServerInfo) => {
   if (!initialized) {
     throw Error("pub must be initialized.");
   }
-  console.log(config.topics_pub);
-  // const periodicMessage = () => {
-  //   for (let j = 0; j < config.topics_pub.length; j++) {
-  //     client.publish(config.topics_pub[j], Info.command);
-  //   }
-  //   setTimeout(periodicMessage, 10000);
-  // };
-  // periodicMessage();
+  const periodicMessage = () => {
+    for (let j = 0; j < config.topics_pub.length; j++) {
+      client.publish(config.topics_pub[j], Info.command);
+    }
+    setTimeout(periodicMessage, 10000);
+  };
+  periodicMessage();
 };
 
 export default function init(_client: MqttClient, _config: MyConfig) {
