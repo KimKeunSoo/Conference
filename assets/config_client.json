@@ -1,0 +1,12 @@
+{
+  "_comment": "Add what you want to subscribe or publish",
+
+  "broker": {
+    "ip": "test.mosquitto.org",
+    "port": 1883
+  },
+  "topics_sub": ["service/client001", "service/client002"],
+  "topics_pub": ["service/server001", "service/server002"],
+  "temperature": 36,
+  "humadity": 10
+}
