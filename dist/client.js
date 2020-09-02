@@ -22,32 +22,66 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var mqtt_1 = __importDefault(require("mqtt"));
-var pub_1 = __importStar(require("./pub"));
-var config = require("../assets/config.json");
-var client = null;
-var temparature = 26;
+const type_1 = require("./type");
+const mqtt_1 = __importDefault(require("mqtt"));
+const pub_1 = __importStar(require("./pub"));
+const config = require("../assets/config_client.json");
+let client = null;
+let myInfo = new type_1.ClientInfo("ClientID", config.temperature, config.humadity);
 if (config.broker.port !== -1) {
-    client = mqtt_1.default.connect("mqtt://" + config.broker.ip + ":" + config.broker.port);
+    client = mqtt_1.default.connect(`mqtt://${config.broker.ip}:${config.broker.port}`);
 }
 else {
-    client = mqtt_1.default.connect("mqtt://" + config.broker.ip);
+    client = mqtt_1.default.connect(`mqtt://${config.broker.ip}`);
 }
 if (!client) {
-    throw Error("MQTT.connect() error. (ip: " + config.broker.ip + ", port: " + config.broker.port + ")");
+    throw Error(`MQTT.connect() error. (ip: ${config.broker.ip}, port: ${config.broker.port})`);
 }
-client.on("connect", function () {
-    console.log("connected to MQTT broker [" + config.broker.ip + "]");
-    client.subscribe(config.topics_sub, function (err) {
+client.on("connect", () => {
+    console.log(`connected to MQTT broker [${config.broker.ip}]`);
+    client.subscribe(config.topics_sub, (err) => {
         if (err)
-            console.log("cannot subscribe on " + config.topics_sub);
+            console.log(`cannot subscribe on ${config.topics_sub}`);
         if (!err)
-            console.log("complete subscribe on " + config.topics_sub);
+            console.log(`complete subscribe on ${config.topics_sub}`);
+        function periodicPrint() {
+            console.log("---------------------------------");
+            console.log(`Name : ${myInfo.name}`);
+            console.log(`Temperature : ${myInfo.temperature}`);
+            console.log(`Humadity : ${myInfo.humadity}`);
+            console.log("---------------------------------");
+            setTimeout(periodicPrint, 1000);
+        }
+        periodicPrint();
     });
 });
 client.on("message", function (topic, message) {
-    console.log("Message from server(" + topic + ") : " + message);
+    var str = message.toString();
+    var splitted = str.split("#"); //splitted.length
+    switch (splitted[0]) {
+        case "temparature":
+            switch (splitted[1]) {
+                case "+":
+                    myInfo.temperature++;
+                    break;
+                case "-":
+                    myInfo.temperature--;
+                    break;
+            }
+            break;
+        case "humadity":
+            switch (splitted[1]) {
+                case "+":
+                    myInfo.humadity++;
+                    break;
+                case "-":
+                    myInfo.humadity--;
+                    break;
+            }
+            break;
+    }
+    console.log(`Message from server(${topic}) : ${message}`);
 });
 pub_1.default(client, config);
-pub_1.recursedPub();
+pub_1.ClientPub(myInfo);
 //# sourceMappingURL=client.js.map

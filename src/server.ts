@@ -27,8 +27,10 @@ client.on("connect", () => {
     if (err) console.log(`cannot subscribe on ${config.topics_sub}`);
     if (!err) console.log(`complete subscribe on ${config.topics_sub}`);
   });
+  console.log("---------------------------------");
   console.log(`This ServerID : ${myInfo.name}`);
   console.log(`Role : ${myInfo.role}`);
+  console.log("---------------------------------");
 });
 
 client.on("message", function (topic, message) {

@@ -5,7 +5,7 @@
     "ip": "test.mosquitto.org",
     "port": 1883
   },
-  "server_topics_sub": ["service/server001"],
-  "server_topics_pub": ["service/client001"],
+  "topics_sub": ["service/server001"],
+  "topics_pub": ["service/client001"],
   "command": "temparautre#+"
 }
