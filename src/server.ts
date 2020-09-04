@@ -34,7 +34,7 @@ client.on("connect", () => {
 });
 
 client.on("message", function (topic, message) {
-  console.log(`Message from client(${topic}) : ${message}`);
+  console.log(`Message from client(${topic}) : \n${message}`);
 });
 
 init(client!, config);

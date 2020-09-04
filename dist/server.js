@@ -51,7 +51,7 @@ client.on("connect", () => {
     console.log("---------------------------------");
 });
 client.on("message", function (topic, message) {
-    console.log(`Message from client(${topic}) : ${message}`);
+    console.log(`Message from client(${topic}) : \n${message}`);
 });
 pub_1.default(client, config);
 pub_1.ServerPub(myInfo);

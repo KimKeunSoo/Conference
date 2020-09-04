@@ -45,7 +45,7 @@ client.on("message", function (topic, message) {
   var splitted: string[] = str.split("#"); //splitted.length
 
   switch (splitted[0]) {
-    case "temparature":
+    case "temperature":
       switch (splitted[1]) {
         case "+":
           myInfo.temperature++;
