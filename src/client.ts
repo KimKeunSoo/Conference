@@ -36,6 +36,8 @@ client.on("connect", () => {
       console.log("---------------------------------");
       setTimeout(periodicPrint, 1000);
     }
+    init(client!, config);
+    ClientPub(myInfo);
     periodicPrint();
   });
 });
@@ -68,6 +70,3 @@ client.on("message", function (topic, message) {
   }
   console.log(`Message from server(${topic}) : ${message}`);
 });
-
-init(client!, config);
-ClientPub(myInfo);

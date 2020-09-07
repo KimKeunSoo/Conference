@@ -52,6 +52,8 @@ client.on("connect", () => {
             console.log("---------------------------------");
             setTimeout(periodicPrint, 1000);
         }
+        pub_1.default(client, config);
+        pub_1.ClientPub(myInfo);
         periodicPrint();
     });
 });
@@ -82,6 +84,4 @@ client.on("message", function (topic, message) {
     }
     console.log(`Message from server(${topic}) : ${message}`);
 });
-pub_1.default(client, config);
-pub_1.ClientPub(myInfo);
 //# sourceMappingURL=client.js.map
