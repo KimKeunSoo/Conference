@@ -15,7 +15,7 @@ export const ClientPub = (Info: ClientInfo) => {
       client.publish(
         config.topics_pub[i],
         `Name : ${Info.name}\nTemperature : ${Info.temperature}\nHumadity : ${Info.humadity}`,
-        { qos: 1 }
+        { qos: 2 }
       );
     }
     setTimeout(recursedMessage, 1000);
@@ -29,7 +29,7 @@ export const ServerPub = (Info: ServerInfo) => {
   }
   const periodicMessage = () => {
     for (let j = 0; j < config.topics_pub.length; j++) {
-      client.publish(config.topics_pub[j], Info.command, { qos: 1 });
+      client.publish(config.topics_pub[j], Info.command, { qos: 2 });
     }
     setTimeout(periodicMessage, 10000);
   };
