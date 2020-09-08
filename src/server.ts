@@ -34,7 +34,9 @@ client.on("connect", () => {
 });
 
 client.on("message", function (topic, message) {
-  console.log(`Message from client(${topic}) : \n${message}`);
+  var splitted: string[] = topic.split("/"); //splitted.length
+  console.log(`${splitted[0]} sent ${splitted[1]} to ME`);
+  console.log(`(${splitted[1]} :\n${message}`);
 });
 
 init(client!, config);

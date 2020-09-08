@@ -68,5 +68,8 @@ client.on("message", function (topic, message) {
       }
       break;
   }
-  console.log(`Message from server(${topic}) : ${message}`);
+  let count: number = 0;
+  var splitted2: string[] = topic.split("/"); //splitted.length
+  console.log(`${splitted2[0]} sent ${splitted2[1]} to ME`);
+  console.log(`(${splitted[1]}[${count++}] is :\n${message}`);
 });

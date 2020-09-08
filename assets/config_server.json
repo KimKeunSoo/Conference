@@ -6,6 +6,6 @@
     "port": 1883
   },
   "topics_sub": ["client_ID/data/server_ID"],
-  "topics_pub": ["server_ID/control/client_ID"],
+  "topics_pub": ["server_ID/command/client_ID"],
   "command": "temperature#+"
 }
