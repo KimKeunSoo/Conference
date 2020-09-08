@@ -30,11 +30,11 @@ client.on("connect", () => {
     if (err) console.log(`cannot subscribe on ${config.topics_sub}`);
     if (!err) console.log(`complete subscribe on ${config.topics_sub}`);
     function periodicPrint() {
-      console.log("---------------------------------");
+      console.log("\n");
       console.log(`Name : ${myInfo.name}`);
       console.log(`Temperature : ${myInfo.temperature}`);
       console.log(`Humadity : ${myInfo.humadity}`);
-      console.log("---------------------------------");
+      console.log("\n");
       setTimeout(periodicPrint, 1000);
     }
     init(client!, config);
@@ -72,5 +72,5 @@ client.on("message", function (topic, message) {
 
   var splitted2: string[] = topic.split("/"); //splitted.length
   console.log(`${splitted2[0]} sent ${splitted2[1]} to ME`);
-  console.log(`${splitted[1]}[${count++}] is :\n${message}`);
+  console.log(`${splitted2[1]}[${count++}] is :\n${message}`);
 });
