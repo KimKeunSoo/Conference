@@ -1,6 +1,7 @@
 import { ClientInfo, MyConfig } from "./type";
 import mqtt, { MqttClient } from "mqtt";
 import init, { ClientPub } from "./pub";
+
 const config: MyConfig = require("../assets/config_client.json");
 
 let client: MqttClient | null = null;
@@ -27,7 +28,6 @@ client.on("connect", () => {
   client.subscribe(config.topics_sub, (err) => {
     if (err) console.log(`cannot subscribe on ${config.topics_sub}`);
     if (!err) console.log(`complete subscribe on ${config.topics_sub}`);
-
     function periodicPrint() {
       console.log("---------------------------------");
       console.log(`Name : ${myInfo.name}`);

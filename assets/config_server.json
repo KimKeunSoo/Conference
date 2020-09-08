@@ -5,7 +5,7 @@
     "ip": "155.230.36.146",
     "port": 1883
   },
-  "topics_sub": ["service/server001"],
-  "topics_pub": ["service/client001", "service/client002"],
+  "topics_sub": ["server_ID/data"],
+  "topics_pub": ["client_ID/control"],
   "command": "temperature#+"
 }
