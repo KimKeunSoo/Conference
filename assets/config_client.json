@@ -5,8 +5,8 @@
     "ip": "192.168.50.120",
     "port": 1883
   },
-  "topics_sub": ["client_ID/data", "client_ID/control"],
-  "topics_pub": ["server_ID/data"],
+  "topics_sub": ["server_ID/control/client_ID"],
+  "topics_pub": ["client_ID/data/server_ID"],
   "temperature": 36,
   "humadity": 10
 }
