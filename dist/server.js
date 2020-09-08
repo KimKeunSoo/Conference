@@ -53,7 +53,7 @@ client.on("connect", () => {
 client.on("message", function (topic, message) {
     var splitted = topic.split("/"); //splitted.length
     console.log(`${splitted[0]} sent ${splitted[1]} to ME`);
-    console.log(`(${splitted[1]} :\n${message}`);
+    console.log(`(${splitted[1]} is \n${message}\n`);
 });
 pub_1.default(client, config);
 pub_1.ServerPub(myInfo);

@@ -28,6 +28,7 @@ const pub_1 = __importStar(require("./pub"));
 const config = require("../assets/config_client.json");
 let client = null;
 let myInfo = new type_1.ClientInfo("ClientID", config.temperature, config.humadity);
+var count = 0;
 if (config.broker.port !== -1) {
     client = mqtt_1.default.connect(`mqtt://${config.broker.ip}:${config.broker.port}`);
 }
@@ -82,9 +83,8 @@ client.on("message", function (topic, message) {
             }
             break;
     }
-    let count = 0;
     var splitted2 = topic.split("/"); //splitted.length
     console.log(`${splitted2[0]} sent ${splitted2[1]} to ME`);
-    console.log(`(${splitted[1]}[${count++}] is :\n${message}`);
+    console.log(`${splitted[1]}[${count++}] is :\n${message}`);
 });
 //# sourceMappingURL=client.js.map
