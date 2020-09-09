@@ -6,11 +6,10 @@ const config: MyConfig = require("../assets/config_client.json");
 
 let client: MqttClient | null = null;
 let myInfo: ClientInfo = new ClientInfo(
-  "ClientID",
+  "b213ee6e-e68d-435f-b0b2-fb30a720f05d",
   config.temperature,
   config.humadity
 );
-var count: number = 0;
 
 if (config.broker.port !== -1) {
   client = mqtt.connect(`mqtt://${config.broker.ip}:${config.broker.port}`);
@@ -71,6 +70,6 @@ client.on("message", function (topic, message) {
   }
 
   var splitted2: string[] = topic.split("/"); //splitted.length
-  console.log(`${splitted2[0]} sent ${splitted2[1]} to ME`);
-  console.log(`${splitted2[1]}[${count++}] is :\n${message}`);
+  console.log(`${splitted2[0]} sent command to ME`);
+  console.log(`Command is :\n${message}`);
 });

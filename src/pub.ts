@@ -26,13 +26,18 @@ export const ServerPub = (Info: ServerInfo) => {
   if (!initialized) {
     throw Error("pub must be initialized.");
   }
-  const periodicMessage = () => {
-    for (let j = 0; j < config.topics_pub.length; j++) {
-      client.publish(config.topics_pub[j], Info.command);
-    }
-    setTimeout(periodicMessage, 10000);
+  const sendCommand = () => {
+    var commandNumber: number = getRandomCommand(
+      0,
+      config.topics_pub.length - 1
+    );
+    client.publish(
+      config.topics_pub[commandNumber],
+      Info.command[commandNumber]
+    );
+    setTimeout(sendCommand, 2000);
   };
-  periodicMessage();
+  sendCommand();
 };
 
 export default function init(_client: MqttClient, _config: MyConfig) {
@@ -40,4 +45,8 @@ export default function init(_client: MqttClient, _config: MyConfig) {
   config = _config;
 
   initialized = true;
+}
+
+function getRandomCommand(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }

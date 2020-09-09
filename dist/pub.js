@@ -20,13 +20,12 @@ exports.ServerPub = (Info) => {
     if (!initialized) {
         throw Error("pub must be initialized.");
     }
-    const periodicMessage = () => {
-        for (let j = 0; j < config.topics_pub.length; j++) {
-            client.publish(config.topics_pub[j], Info.command);
-        }
-        setTimeout(periodicMessage, 10000);
+    const sendCommand = () => {
+        var commandNumber = getRandomCommand(0, config.topics_pub.length - 1);
+        client.publish(config.topics_pub[commandNumber], Info.command[commandNumber]);
+        setTimeout(sendCommand, 2000);
     };
-    periodicMessage();
+    sendCommand();
 };
 function init(_client, _config) {
     client = _client;
@@ -34,4 +33,7 @@ function init(_client, _config) {
     initialized = true;
 }
 exports.default = init;
+function getRandomCommand(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 //# sourceMappingURL=pub.js.map

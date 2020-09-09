@@ -7,7 +7,7 @@ export type MyConfig = {
   broker: ConfigBroker;
   topics_sub: Array<string>;
   topics_pub: Array<string>;
-  command?: string;
+  command?: Array<string>;
   temperature?: number;
   humadity?: number;
 };
@@ -22,6 +22,7 @@ interface clientInfo {
 interface serverInfo {
   name: string;
   role: string;
+  command: string[];
   init?: boolean;
 }
 
@@ -38,7 +39,7 @@ export class ServerInfo implements serverInfo {
   constructor(
     public name: string,
     public role: string,
-    public command: string,
+    public command: string[],
     public init?: boolean
   ) {}
 }

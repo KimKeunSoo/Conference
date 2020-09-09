@@ -5,7 +5,12 @@
     "ip": "192.168.50.120",
     "port": 1883
   },
-  "topics_sub": ["client_ID/data/server_ID"],
-  "topics_pub": ["server_ID/command/client_ID"],
-  "command": "temperature#+"
+  "topics_sub": ["b213ee6e-e68d-435f-b0b2-fb30a720f05d/SERVER/data"],
+  "topics_pub": [
+    "SERVER/b213ee6e-e68d-435f-b0b2-fb30a720f05d/command/temparature/PLUS",
+    "SERVER/b213ee6e-e68d-435f-b0b2-fb30a720f05d/command/temparature/MINUS",
+    "SERVER/b213ee6e-e68d-435f-b0b2-fb30a720f05d/command/humadity/PLUS",
+    "SERVER/b213ee6e-e68d-435f-b0b2-fb30a720f05d/command/humadity/MINUS"
+  ],
+  "command": ["temperature#+", "temperature#-", "humadity#+", "humadity#-"]
 }
