@@ -56,5 +56,5 @@ client.on("message", function (topic, message) {
     console.log(`Data is \n${message}\n`);
 });
 pub_1.default(client, config);
-pub_1.ServerPub(myInfo);
+setTimeout(pub_1.ServerPub, 5000, myInfo);
 //# sourceMappingURL=server.js.map

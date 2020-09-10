@@ -41,4 +41,4 @@ client.on("message", function (topic, message) {
 });
 
 init(client!, config);
-ServerPub(myInfo);
+setTimeout(ServerPub, 5000, myInfo);

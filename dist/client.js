@@ -53,7 +53,7 @@ client.on("connect", () => {
             setTimeout(periodicPrint, 1000);
         }
         pub_1.default(client, config);
-        pub_1.ClientPub(myInfo);
+        setTimeout(pub_1.ClientPub, 5000, myInfo);
         periodicPrint();
     });
 });

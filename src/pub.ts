@@ -50,3 +50,7 @@ export default function init(_client: MqttClient, _config: MyConfig) {
 function getRandomCommand(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
