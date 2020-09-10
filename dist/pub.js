@@ -21,13 +21,8 @@ exports.ServerPub = (Info) => {
         throw Error("pub must be initialized.");
     }
     const sendCommand = () => {
-        // var commandNumber: number = getRandomCommand(
-        //   0,
-        //   config.topics_pub.length - 1
-        // );
-        for (let i = 0; i < config.topics_pub.length; i++) {
-            client.publish(config.topics_pub[i], Info.command[i]);
-        }
+        var commandNumber = getRandomCommand(0, config.topics_pub.length - 1);
+        client.publish(config.topics_pub[commandNumber], Info.command[commandNumber]);
         setTimeout(sendCommand, 1000);
     };
     sendCommand();
