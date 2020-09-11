@@ -38,7 +38,7 @@ client.on("connect", () => {
     }
     init(client!, config);
     setTimeout(ClientPub, 5000, myInfo);
-    periodicPrint();
+    setTimeout(periodicPrint, 4500);
   });
 });
 
