@@ -9,13 +9,13 @@ export type MyConfig = {
   topics_pub: Array<string>;
   command?: Array<string>;
   temperature?: number;
-  humadity?: number;
+  humidity?: number;
 };
 
 interface clientInfo {
   name: string;
   temperature: number;
-  humadity: number;
+  humidity: number;
   init?: boolean;
 }
 
@@ -30,7 +30,7 @@ export class ClientInfo implements clientInfo {
   constructor(
     public name: string,
     public temperature: number,
-    public humadity: number,
+    public humidity: number,
     public init?: boolean
   ) {}
 }

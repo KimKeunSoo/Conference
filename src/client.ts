@@ -8,7 +8,7 @@ let client: MqttClient | null = null;
 let myInfo: ClientInfo = new ClientInfo(
   "b213ee6e-e68d-435f-b0b2-fb30a720f05d",
   config.temperature,
-  config.humadity
+  config.humidity
 );
 
 if (config.broker.port !== -1) {
@@ -32,13 +32,13 @@ client.on("connect", () => {
       console.log("\n");
       console.log(`Name : ${myInfo.name}`);
       console.log(`Temperature : ${myInfo.temperature}`);
-      console.log(`Humadity : ${myInfo.humadity}`);
+      console.log(`humidity : ${myInfo.humidity}`);
       console.log("\n");
       setTimeout(periodicPrint, 1000);
     }
     init(client!, config);
     setTimeout(ClientPub, 5000, myInfo);
-    setTimeout(periodicPrint, 4500);
+    setTimeout(periodicPrint, 5000);
   });
 });
 
@@ -57,13 +57,13 @@ client.on("message", function (topic, message) {
           break;
       }
       break;
-    case "humadity":
+    case "humidity":
       switch (splitted[1]) {
         case "+":
-          myInfo.humadity++;
+          myInfo.humidity++;
           break;
         case "-":
-          myInfo.humadity--;
+          myInfo.humidity--;
           break;
       }
       break;
