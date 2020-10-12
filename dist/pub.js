@@ -12,7 +12,7 @@ exports.ClientPub = (Info) => {
         for (let i = 0; i < config.topics_pub.length; i++) {
             client.publish(config.topics_pub[i], `Name : ${Info.name}\nTemperature : ${Info.temperature}\nHumidity : ${Info.humidity}`);
         }
-        setTimeout(recursedMessage, 1000);
+        setTimeout(recursedMessage, 1);
     };
     recursedMessage();
 };
@@ -23,7 +23,7 @@ exports.ServerPub = (Info) => {
     const sendCommand = () => {
         var commandNumber = getRandomCommand(0, config.topics_pub.length - 1);
         client.publish(config.topics_pub[commandNumber], Info.command[commandNumber]);
-        setTimeout(sendCommand, 1000);
+        setTimeout(sendCommand, 1);
     };
     sendCommand();
 };
@@ -35,8 +35,5 @@ function init(_client, _config) {
 exports.default = init;
 function getRandomCommand(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-function delay(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 //# sourceMappingURL=pub.js.map

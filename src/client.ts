@@ -31,12 +31,12 @@ client.on("connect", () => {
     if (!err) console.log(`complete subscribe on ${config.topics_sub}`);
     function periodicPrint() {
       count++;
-      console.log(`\n[${count}]\n`);
+      console.log(`\nTX[${count}]\n`);
       console.log(`Name : ${myInfo.name}`);
       console.log(`Temperature : ${myInfo.temperature}`);
       console.log(`humidity : ${myInfo.humidity}`);
       console.log("\n");
-      setTimeout(periodicPrint, 1);
+      setTimeout(periodicPrint, 1000);
     }
     init(client!, config);
     setTimeout(ClientPub, 5000, myInfo);
@@ -70,8 +70,9 @@ client.on("message", function (topic, message) {
       }
       break;
   }
-
+  count++;
   var splitted2: string[] = topic.split("/"); //splitted.length
+  console.log(`\nRX[${count}]\n`);
   console.log(`${splitted2[0]} sent command to ME`);
   console.log(`Command is :\n${message}`);
 });

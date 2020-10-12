@@ -1,4 +1,5 @@
 "use strict";
+//Type Definition
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ServerInfo = exports.ClientInfo = void 0;
 class ClientInfo {

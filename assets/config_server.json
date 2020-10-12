@@ -9,8 +9,8 @@
   "topics_pub": [
     "SERVER/b213ee6e-e68d-435f-b0b2-fb30a720f05d/command/temparature/PLUS",
     "SERVER/b213ee6e-e68d-435f-b0b2-fb30a720f05d/command/temparature/MINUS",
-    "SERVER/b213ee6e-e68d-435f-b0b2-fb30a720f05d/command/humadity/PLUS",
-    "SERVER/b213ee6e-e68d-435f-b0b2-fb30a720f05d/command/humadity/MINUS"
+    "SERVER/b213ee6e-e68d-435f-b0b2-fb30a720f05d/command/humidity/PLUS",
+    "SERVER/b213ee6e-e68d-435f-b0b2-fb30a720f05d/command/humidity/MINUS"
   ],
-  "command": ["temperature#+", "temperature#-", "humadity#+", "humadity#-"]
+  "command": ["temperature#+", "temperature#-", "humidity#+", "humidity#-"]
 }

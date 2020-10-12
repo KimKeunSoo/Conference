@@ -28,6 +28,7 @@ const pub_1 = __importStar(require("./pub"));
 const config = require("../assets/config_server.json");
 let client = null;
 let myInfo = new type_1.ServerInfo("ServerID", "ControlTower", config.command);
+var count = 1;
 if (config.broker.port !== -1) {
     client = mqtt_1.default.connect(`mqtt://${config.broker.ip}:${config.broker.port}`);
 }
@@ -52,6 +53,8 @@ client.on("connect", () => {
 });
 client.on("message", function (topic, message) {
     var splitted = topic.split("/"); //splitted.length
+    count++;
+    console.log(`\nRX[${count}]\n`);
     console.log(`${splitted[0]} sent data to ME`);
     console.log(`Data is \n${message}\n`);
 });
