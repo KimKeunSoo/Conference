@@ -40,7 +40,7 @@ if (!client) {
 }
 client.on("connect", () => {
     console.log(`connected to MQTT broker [${config.broker.ip}]`);
-    client.subscribe(config.topics_sub, (err) => {
+    const thesis_sub = (err) => {
         if (err)
             console.log(`cannot subscribe on ${config.topics_sub}`);
         if (!err)
@@ -57,9 +57,17 @@ client.on("connect", () => {
         pub_1.default(client, config);
         setTimeout(pub_1.ClientPub, 5000, myInfo);
         setTimeout(periodicPrint, 5000);
+    };
+    client.subscribe(config.topics_sub, (err) => {
+        if (err)
+            console.log(`cannot subscribe on ${config.topics_sub}`);
+        if (!err)
+            console.log(`complete subscribe on ${config.topics_sub}`);
     });
+    pub_1.default(client, config);
+    pub_1.MyPub(myInfo);
 });
-client.on("message", function (topic, message) {
+const thesisSub = (topic, message) => {
     var str = message.toString();
     var splitted = str.split("#"); //splitted.length
     switch (splitted[0]) {
@@ -89,5 +97,12 @@ client.on("message", function (topic, message) {
     console.log(`\nRX[${count}]\n`);
     console.log(`${splitted2[0]} sent command to ME`);
     console.log(`Command is :\n${message}`);
-});
+};
+const mySub = (topic, message) => {
+    count++;
+    if (count === 1000) {
+        console.log("Received 1000 messages.");
+    }
+};
+client.on("message", mySub);
 //# sourceMappingURL=client.js.map

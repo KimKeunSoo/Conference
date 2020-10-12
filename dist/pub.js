@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ServerPub = exports.ClientPub = void 0;
+exports.MyPub = exports.ServerPub = exports.ClientPub = void 0;
 let initialized = false;
 let client = null;
 let config = null;
@@ -26,6 +26,12 @@ exports.ServerPub = (Info) => {
         setTimeout(sendCommand, 10);
     };
     sendCommand();
+};
+exports.MyPub = (Info) => {
+    for (let i = 0; i < 1000; i++) {
+        client.publish(config.topics_pub[0], `Name : ${Info.name}\nTemperature : ${Info.temperature}\nHumidity : ${Info.humidity}`);
+    }
+    console.log("Sent 1000 pubs");
 };
 function init(_client, _config) {
     client = _client;

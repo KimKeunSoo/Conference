@@ -1,6 +1,6 @@
 import { ClientInfo, MyConfig } from "./type";
 import mqtt, { MqttClient } from "mqtt";
-import init, { ClientPub } from "./pub";
+import init, { ClientPub, MyPub } from "./pub";
 
 const config: MyConfig = require("../assets/config_client.json");
 
@@ -26,7 +26,8 @@ if (!client) {
 
 client.on("connect", () => {
   console.log(`connected to MQTT broker [${config.broker.ip}]`);
-  client.subscribe(config.topics_sub, (err) => {
+
+  const thesis_sub = (err: any) => {
     if (err) console.log(`cannot subscribe on ${config.topics_sub}`);
     if (!err) console.log(`complete subscribe on ${config.topics_sub}`);
     function periodicPrint() {
@@ -41,10 +42,17 @@ client.on("connect", () => {
     init(client!, config);
     setTimeout(ClientPub, 5000, myInfo);
     setTimeout(periodicPrint, 5000);
+  };
+
+  client.subscribe(config.topics_sub, (err) => {
+    if (err) console.log(`cannot subscribe on ${config.topics_sub}`);
+    if (!err) console.log(`complete subscribe on ${config.topics_sub}`);
   });
+  init(client!, config);
+  MyPub(myInfo);
 });
 
-client.on("message", function (topic, message) {
+const thesisSub = (topic: any, message: any) => {
   var str: string = message.toString();
   var splitted: string[] = str.split("#"); //splitted.length
 
@@ -75,4 +83,14 @@ client.on("message", function (topic, message) {
   console.log(`\nRX[${count}]\n`);
   console.log(`${splitted2[0]} sent command to ME`);
   console.log(`Command is :\n${message}`);
-});
+};
+
+const mySub = (topic: any, message: any) => {
+  count++;
+
+  if (count === 1000) {
+    console.log("Received 1000 messages.");
+  }
+};
+
+client.on("message", mySub);
