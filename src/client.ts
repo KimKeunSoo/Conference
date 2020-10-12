@@ -34,10 +34,10 @@ client.on("connect", () => {
       console.log(`Temperature : ${myInfo.temperature}`);
       console.log(`humidity : ${myInfo.humidity}`);
       console.log("\n");
-      setTimeout(periodicPrint, 1000);
+      setTimeout(periodicPrint, 1);
     }
     init(client!, config);
-    setTimeout(ClientPub, 5000, myInfo);
+    setTimeout(ClientPub, 1, myInfo);
     setTimeout(periodicPrint, 5000);
   });
 });

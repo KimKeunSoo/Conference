@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ServerInfo = exports.ClientInfo = void 0;
 class ClientInfo {
-    constructor(name, temperature, humadity, init) {
+    constructor(name, temperature, humidity, init) {
         this.name = name;
         this.temperature = temperature;
-        this.humadity = humadity;
+        this.humidity = humidity;
         this.init = init;
     }
 }

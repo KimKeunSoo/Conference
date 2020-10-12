@@ -54,7 +54,7 @@ client.on("connect", () => {
         }
         pub_1.default(client, config);
         setTimeout(pub_1.ClientPub, 5000, myInfo);
-        setTimeout(periodicPrint, 4500);
+        setTimeout(periodicPrint, 5000);
     });
 });
 client.on("message", function (topic, message) {

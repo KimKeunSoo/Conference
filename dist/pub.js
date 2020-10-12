@@ -10,7 +10,7 @@ exports.ClientPub = (Info) => {
     }
     const recursedMessage = () => {
         for (let i = 0; i < config.topics_pub.length; i++) {
-            client.publish(config.topics_pub[i], `Name : ${Info.name}\nTemperature : ${Info.temperature}\nHumadity : ${Info.humadity}`);
+            client.publish(config.topics_pub[i], `Name : ${Info.name}\nTemperature : ${Info.temperature}\nHumidity : ${Info.humidity}`);
         }
         setTimeout(recursedMessage, 1000);
     };
