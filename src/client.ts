@@ -10,6 +10,7 @@ let myInfo: ClientInfo = new ClientInfo(
   config.temperature,
   config.humidity
 );
+var count: number = 1;
 
 if (config.broker.port !== -1) {
   client = mqtt.connect(`mqtt://${config.broker.ip}:${config.broker.port}`);
@@ -29,7 +30,8 @@ client.on("connect", () => {
     if (err) console.log(`cannot subscribe on ${config.topics_sub}`);
     if (!err) console.log(`complete subscribe on ${config.topics_sub}`);
     function periodicPrint() {
-      console.log("\n");
+      count++;
+      console.log(`\n[${count}]\n`);
       console.log(`Name : ${myInfo.name}`);
       console.log(`Temperature : ${myInfo.temperature}`);
       console.log(`humidity : ${myInfo.humidity}`);
@@ -37,7 +39,7 @@ client.on("connect", () => {
       setTimeout(periodicPrint, 1);
     }
     init(client!, config);
-    setTimeout(ClientPub, 1, myInfo);
+    setTimeout(ClientPub, 5000, myInfo);
     setTimeout(periodicPrint, 5000);
   });
 });
