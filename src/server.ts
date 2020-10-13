@@ -10,6 +10,7 @@ let myInfo: ServerInfo = new ServerInfo(
   "ControlTower",
   config.command
 );
+var count: number = 1;
 
 if (config.broker.port !== -1) {
   client = mqtt.connect(`mqtt://${config.broker.ip}:${config.broker.port}`);
@@ -34,13 +35,13 @@ client.on("connect", () => {
   console.log("---------------------------------");
 });
 
-// client.on("message", function (topic, message) {
-//   var splitted: string[] = topic.split("/"); //splitted.length
-//   count++;
-//   console.log(`\nRX[${count}]\n`);
-//   console.log(`${splitted[0]} sent data to ME`);
-//   console.log(`Data is \n${message}\n`);
-// });
+client.on("message", function (topic, message) {
+  var splitted: string[] = topic.split("/"); //splitted.length
+  count++;
+  console.log(`\nRX[${count}]\n`);
+  console.log(`${splitted[0]} sent data to ME`);
+  console.log(`Data is \n${message}\n`);
+});
 
 init(client!, config);
 setTimeout(ServerPub, 5000, myInfo);
