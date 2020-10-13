@@ -78,11 +78,11 @@ const thesisSub = (topic: any, message: any) => {
       }
       break;
   }
-  count++;
-  var splitted2: string[] = topic.split("/"); //splitted.length
-  console.log(`\nRX[${count}]\n`);
-  console.log(`${splitted2[0]} sent command to ME`);
-  console.log(`Command is :\n${message}`);
+  // count++;
+  // var splitted2: string[] = topic.split("/"); //splitted.length
+  // console.log(`\nRX[${count}]\n`);
+  // console.log(`${splitted2[0]} sent command to ME`);
+  // console.log(`Command is :\n${message}`);
 };
 
 const mySub = (topic: any, message: any) => {

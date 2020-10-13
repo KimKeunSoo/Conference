@@ -35,13 +35,13 @@ client.on("connect", () => {
   console.log("---------------------------------");
 });
 
-client.on("message", function (topic, message) {
-  var splitted: string[] = topic.split("/"); //splitted.length
-  count++;
-  console.log(`\nRX[${count}]\n`);
-  console.log(`${splitted[0]} sent data to ME`);
-  console.log(`Data is \n${message}\n`);
-});
+// client.on("message", function (topic, message) {
+//   var splitted: string[] = topic.split("/"); //splitted.length
+//   count++;
+//   console.log(`\nRX[${count}]\n`);
+//   console.log(`${splitted[0]} sent data to ME`);
+//   console.log(`Data is \n${message}\n`);
+// });
 
 init(client!, config);
 setTimeout(ServerPub, 5000, myInfo);
