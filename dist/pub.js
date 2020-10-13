@@ -12,7 +12,7 @@ exports.ClientPub = (Info) => {
         for (let i = 0; i < config.topics_pub.length; i++) {
             client.publish(config.topics_pub[i], `Name : ${Info.name}\nTemperature : ${Info.temperature}\nHumidity : ${Info.humidity}`);
         }
-        setTimeout(recursedMessage, 10);
+        setTimeout(recursedMessage, 100);
     };
     recursedMessage();
 };
@@ -23,7 +23,7 @@ exports.ServerPub = (Info) => {
     const sendCommand = () => {
         var commandNumber = getRandomCommand(0, config.topics_pub.length - 1);
         client.publish(config.topics_pub[commandNumber], Info.command[commandNumber]);
-        setTimeout(sendCommand, 10);
+        setTimeout(sendCommand, 100);
     };
     sendCommand();
 };

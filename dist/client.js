@@ -52,7 +52,7 @@ client.on("connect", () => {
             console.log(`Temperature : ${myInfo.temperature}`);
             console.log(`humidity : ${myInfo.humidity}`);
             console.log("\n");
-            setTimeout(periodicPrint, 10);
+            setTimeout(periodicPrint, 100);
         }
         pub_1.default(client, config);
         setTimeout(pub_1.ClientPub, 5000, myInfo);

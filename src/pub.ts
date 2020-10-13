@@ -17,7 +17,7 @@ export const ClientPub = (Info: ClientInfo) => {
         `Name : ${Info.name}\nTemperature : ${Info.temperature}\nHumidity : ${Info.humidity}`
       );
     }
-    setTimeout(recursedMessage, 10);
+    setTimeout(recursedMessage, 100);
   };
   recursedMessage();
 };
@@ -35,7 +35,7 @@ export const ServerPub = (Info: ServerInfo) => {
       config.topics_pub[commandNumber],
       Info.command[commandNumber]
     );
-    setTimeout(sendCommand, 10);
+    setTimeout(sendCommand, 100);
   };
   sendCommand();
 };
