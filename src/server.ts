@@ -10,7 +10,6 @@ let myInfo: ServerInfo = new ServerInfo(
   "ControlTower",
   config.command
 );
-var count: number = 1;
 
 if (config.broker.port !== -1) {
   client = mqtt.connect(`mqtt://${config.broker.ip}:${config.broker.port}`);

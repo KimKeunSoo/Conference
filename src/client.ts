@@ -1,6 +1,6 @@
 import { ClientInfo, MyConfig } from "./type";
 import mqtt, { MqttClient } from "mqtt";
-import init, { ClientPub, MyPub } from "./pub";
+import init, { ClientPub } from "./pub";
 
 const config: MyConfig = require("../assets/config_client.json");
 
@@ -26,33 +26,25 @@ if (!client) {
 
 client.on("connect", () => {
   console.log(`connected to MQTT broker [${config.broker.ip}]`);
-
-  const thesis_sub = (err: any) => {
-    if (err) console.log(`cannot subscribe on ${config.topics_sub}`);
-    if (!err) console.log(`complete subscribe on ${config.topics_sub}`);
-    function periodicPrint() {
-      count++;
-      console.log(`\nTX[${count}]\n`);
-      console.log(`Name : ${myInfo.name}`);
-      console.log(`Temperature : ${myInfo.temperature}`);
-      console.log(`humidity : ${myInfo.humidity}`);
-      console.log("\n");
-      setTimeout(periodicPrint, 1000);
-    }
-    init(client!, config);
-    setTimeout(ClientPub, 5000, myInfo);
-    setTimeout(periodicPrint, 5000);
-  };
-
   client.subscribe(config.topics_sub, (err) => {
     if (err) console.log(`cannot subscribe on ${config.topics_sub}`);
     if (!err) console.log(`complete subscribe on ${config.topics_sub}`);
+    // function periodicPrint() {
+    //   count++;
+    //   console.log(`\nTX[${count}]\n`);
+    //   console.log(`Name : ${myInfo.name}`);
+    //   console.log(`Temperature : ${myInfo.temperature}`);
+    //   console.log(`humidity : ${myInfo.humidity}`);
+    //   console.log("\n");
+    //   setTimeout(periodicPrint, 1000);
+    // }
+    init(client!, config);
+    setTimeout(ClientPub, 5000, myInfo);
+    // setTimeout(periodicPrint, 5000);
   });
-  init(client!, config);
-  MyPub(myInfo);
 });
 
-const thesisSub = (topic: any, message: any) => {
+client.on("message", function (topic, message) {
   var str: string = message.toString();
   var splitted: string[] = str.split("#"); //splitted.length
 
@@ -78,19 +70,9 @@ const thesisSub = (topic: any, message: any) => {
       }
       break;
   }
-  // count++;
+  count++;
   // var splitted2: string[] = topic.split("/"); //splitted.length
   // console.log(`\nRX[${count}]\n`);
   // console.log(`${splitted2[0]} sent command to ME`);
   // console.log(`Command is :\n${message}`);
-};
-
-const mySub = (topic: any, message: any) => {
-  count++;
-
-  if (count === 1000) {
-    console.log("Received 1000 messages.");
-  }
-};
-
-client.on("message", mySub);
+});
