@@ -37,10 +37,10 @@ client.on("connect", () => {
 
 client.on("message", function (topic, message) {
   var splitted: string[] = topic.split("/"); //splitted.length
-  // count++;
-  // console.log(`\nRX[${count}]\n`);
-  // console.log(`${splitted[0]} sent data to ME`);
-  // console.log(`Data is \n${message}\n`);
+  count++;
+  console.log(`\nRX[${count}]\n`);
+  console.log(`${splitted[0]} sent data to ME`);
+  console.log(`Data is \n${message}\n`);
 });
 
 init(client!, config);
