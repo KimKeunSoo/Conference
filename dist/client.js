@@ -45,18 +45,18 @@ client.on("connect", () => {
             console.log(`cannot subscribe on ${config.topics_sub}`);
         if (!err)
             console.log(`complete subscribe on ${config.topics_sub}`);
-        // function periodicPrint() {
-        //   count++;
-        //   console.log(`\nTX[${count}]\n`);
-        //   console.log(`Name : ${myInfo.name}`);
-        //   console.log(`Temperature : ${myInfo.temperature}`);
-        //   console.log(`humidity : ${myInfo.humidity}`);
-        //   console.log("\n");
-        //   setTimeout(periodicPrint, 1000);
-        // }
+        function periodicPrint() {
+            count++;
+            console.log(`\nTX[${count}]\n`);
+            console.log(`Name : ${myInfo.name}`);
+            console.log(`Temperature : ${myInfo.temperature}`);
+            console.log(`humidity : ${myInfo.humidity}`);
+            console.log("\n");
+            setTimeout(periodicPrint, 1);
+        }
         pub_1.default(client, config);
         setTimeout(pub_1.ClientPub, 5000, myInfo);
-        // setTimeout(periodicPrint, 5000);
+        setTimeout(periodicPrint, 5000);
     });
 });
 client.on("message", function (topic, message) {
