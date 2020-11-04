@@ -38,10 +38,11 @@ client.on("connect", () => {
 client.on("message", function (topic, message) {
   var splitted: string[] = topic.split("/"); //splitted.length
   count++;
-  console.log(`\nRX[${count}]\n`);
-  console.log(`${splitted[0]} sent data to ME`);
-  console.log(`Data is \n${message}\n`);
+  // console.log(`\nRX[${count}]\n`);
+  // console.log(`${splitted[0]} sent data to ME`);
+  // console.log(`Data is \n${message}\n`);
+  if (count == 1000) console.log("Received 1000 packets");
 });
 
 init(client!, config);
-setTimeout(ServerPub, 5000, myInfo);
+//setTimeout(ServerPub, 5000, myInfo);

@@ -17,7 +17,7 @@ export const ClientPub = (Info: ClientInfo) => {
         `Name : ${Info.name}\nTemperature : ${Info.temperature}\nHumidity : ${Info.humidity}`
       );
     }
-    setTimeout(recursedMessage, 100);
+    setTimeout(recursedMessage, 1000);
   };
   recursedMessage();
 };
@@ -35,20 +35,20 @@ export const ServerPub = (Info: ServerInfo) => {
       config.topics_pub[commandNumber],
       Info.command[commandNumber]
     );
-    setTimeout(sendCommand, 100);
+    setTimeout(sendCommand, 1000);
   };
   sendCommand();
 };
 
-// export const MyPub = (Info: ClientInfo) => {
-//   for (let i = 0; i < 1000; i++) {
-//     client.publish(
-//       config.topics_pub[0],
-//       `Name : ${Info.name}\nTemperature : ${Info.temperature}\nHumidity : ${Info.humidity}`
-//     );
-//   }
-//   console.log("Sent 1000 pubs");
-// };
+export const MyPub = (Info: ClientInfo) => {
+  for (let i = 0; i < 1000; i++) {
+    client.publish(
+      config.topics_pub[0],
+      `Name : ${Info.name}\nTemperature : ${Info.temperature}\nHumidity : ${Info.humidity}`
+    );
+  }
+  console.log("Sent 1000 packets");
+};
 
 export default function init(_client: MqttClient, _config: MyConfig) {
   client = _client;

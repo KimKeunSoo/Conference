@@ -45,18 +45,18 @@ client.on("connect", () => {
             console.log(`cannot subscribe on ${config.topics_sub}`);
         if (!err)
             console.log(`complete subscribe on ${config.topics_sub}`);
-        function periodicPrint() {
-            count++;
-            console.log(`\nTX[${count}]\n`);
-            console.log(`Name : ${myInfo.name}`);
-            console.log(`Temperature : ${myInfo.temperature}`);
-            console.log(`humidity : ${myInfo.humidity}`);
-            console.log("\n");
-            setTimeout(periodicPrint, 100);
-        }
+        // function periodicPrint() {
+        //   count++;
+        //   console.log(`\nTX[${count}]\n`);
+        //   console.log(`Name : ${myInfo.name}`);
+        //   console.log(`Temperature : ${myInfo.temperature}`);
+        //   console.log(`humidity : ${myInfo.humidity}`);
+        //   console.log("\n");
+        //   setTimeout(periodicPrint, 100);
+        // }
         pub_1.default(client, config);
-        setTimeout(pub_1.ClientPub, 5000, myInfo);
-        setTimeout(periodicPrint, 5000);
+        setTimeout(pub_1.MyPub, 5000, myInfo);
+        // setTimeout(periodicPrint, 5000);
     });
 });
 client.on("message", function (topic, message) {
@@ -86,8 +86,8 @@ client.on("message", function (topic, message) {
     }
     count++;
     var splitted2 = topic.split("/"); //splitted.length
-    console.log(`\nRX[${count}]\n`);
-    console.log(`${splitted2[0]} sent command to ME`);
-    console.log(`Command is :\n${message}`);
+    // console.log(`\nRX[${count}]\n`);
+    // console.log(`${splitted2[0]} sent command to ME`);
+    // console.log(`Command is :\n${message}`);
 });
 //# sourceMappingURL=client.js.map
