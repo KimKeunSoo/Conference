@@ -41,7 +41,10 @@ client.on("message", function (topic, message) {
   // console.log(`\nRX[${count}]\n`);
   // console.log(`${splitted[0]} sent data to ME`);
   // console.log(`Data is \n${message}\n`);
-  if (count == 1000) console.log("Received 1000 packets");
+  if (count == 1000) {
+    console.log("Received 1000 packets");
+    count = 0;
+  }
 });
 
 init(client!, config);

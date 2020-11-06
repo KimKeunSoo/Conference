@@ -38,8 +38,10 @@ client.on("message", function (topic, message) {
     // console.log(`\nRX[${count}]\n`);
     // console.log(`${splitted[0]} sent data to ME`);
     // console.log(`Data is \n${message}\n`);
-    if (count == 1000)
+    if (count == 1000) {
         console.log("Received 1000 packets");
+        count = 0;
+    }
 });
 pub_1.default(client, config);
 //setTimeout(ServerPub, 5000, myInfo);
