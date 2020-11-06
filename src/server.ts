@@ -11,6 +11,7 @@ let myInfo: ServerInfo = new ServerInfo(
   config.command
 );
 var count: number = 1;
+var sequence: number = 1;
 
 if (config.broker.port !== -1) {
   client = mqtt.connect(`mqtt://${config.broker.ip}:${config.broker.port}`);
@@ -41,8 +42,8 @@ client.on("message", function (topic, message) {
   // console.log(`\nRX[${count}]\n`);
   // console.log(`${splitted[0]} sent data to ME`);
   // console.log(`Data is \n${message}\n`);
-  if (count == 1000) {
-    console.log("Received 1000 packets");
+  if (count == 10) {
+    console.log(`[${sequence++}]  Received 10 packets`);
     count = 0;
   }
 });

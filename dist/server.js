@@ -10,6 +10,7 @@ const config = require("../assets/config_server.json");
 let client = null;
 let myInfo = new type_1.ServerInfo("ServerID", "ControlTower", config.command);
 var count = 1;
+var sequence = 1;
 if (config.broker.port !== -1) {
     client = mqtt_1.default.connect(`mqtt://${config.broker.ip}:${config.broker.port}`);
 }
@@ -38,8 +39,8 @@ client.on("message", function (topic, message) {
     // console.log(`\nRX[${count}]\n`);
     // console.log(`${splitted[0]} sent data to ME`);
     // console.log(`Data is \n${message}\n`);
-    if (count == 1000) {
-        console.log("Received 1000 packets");
+    if (count == 10) {
+        console.log(`[${sequence++}]  Received 10 packets`);
         count = 0;
     }
 });
