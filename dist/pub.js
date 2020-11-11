@@ -4,7 +4,6 @@ exports.MyPub = exports.ServerPub = exports.ClientPub = void 0;
 let initialized = false;
 let client = null;
 let config = null;
-let count = 1;
 exports.ClientPub = (Info) => {
     if (!initialized) {
         throw Error("pub must be initialized.");
@@ -32,7 +31,7 @@ exports.MyPub = (Info) => {
     for (let i = 0; i < 10; i++) {
         client.publish(config.topics_pub[0], `Name : ${Info.name}\nTemperature : ${Info.temperature}\nHumidity : ${Info.humidity}`);
     }
-    console.log(`[${count++}]Sent 10 packets`);
+    console.log(`Sent 10 packets`);
 };
 function init(_client, _config) {
     client = _client;
