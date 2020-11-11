@@ -4,6 +4,7 @@ import { MqttClient } from "mqtt";
 let initialized: boolean = false;
 let client: MqttClient | null = null;
 let config: MyConfig | null = null;
+export var count: number = 1;
 
 export const ClientPub = (Info: ClientInfo) => {
   if (!initialized) {
@@ -47,7 +48,7 @@ export const MyPub = (Info: ClientInfo) => {
       `Name : ${Info.name}\nTemperature : ${Info.temperature}\nHumidity : ${Info.humidity}`
     );
   }
-  console.log("Sent 10 packets");
+  console.log(`[${count++}]Sent 10 packets`);
 };
 
 export default function init(_client: MqttClient, _config: MyConfig) {
