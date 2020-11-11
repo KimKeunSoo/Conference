@@ -10,7 +10,6 @@ let myInfo: ClientInfo = new ClientInfo(
   config.temperature,
   config.humidity
 );
-var count: number = 1;
 
 if (config.broker.port !== -1) {
   client = mqtt.connect(`mqtt://${config.broker.ip}:${config.broker.port}`);
@@ -70,7 +69,6 @@ client.on("message", function (topic, message) {
       }
       break;
   }
-  count++;
   var splitted2: string[] = topic.split("/"); //splitted.length
   // console.log(`\nRX[${count}]\n`);
   // console.log(`${splitted2[0]} sent command to ME`);

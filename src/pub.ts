@@ -4,7 +4,7 @@ import { MqttClient } from "mqtt";
 let initialized: boolean = false;
 let client: MqttClient | null = null;
 let config: MyConfig | null = null;
-export var count: number = 1;
+let count: number = 1;
 
 export const ClientPub = (Info: ClientInfo) => {
   if (!initialized) {

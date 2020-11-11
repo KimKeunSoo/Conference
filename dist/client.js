@@ -28,7 +28,6 @@ const pub_1 = __importStar(require("./pub"));
 const config = require("../assets/config_client.json");
 let client = null;
 let myInfo = new type_1.ClientInfo("b213ee6e-e68d-435f-b0b2-fb30a720f05d", config.temperature, config.humidity);
-var count = 1;
 if (config.broker.port !== -1) {
     client = mqtt_1.default.connect(`mqtt://${config.broker.ip}:${config.broker.port}`);
 }
@@ -84,7 +83,6 @@ client.on("message", function (topic, message) {
             }
             break;
     }
-    count++;
     var splitted2 = topic.split("/"); //splitted.length
     // console.log(`\nRX[${count}]\n`);
     // console.log(`${splitted2[0]} sent command to ME`);
