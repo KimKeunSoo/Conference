@@ -28,6 +28,7 @@ const pub_1 = __importStar(require("./pub"));
 const config = require("../assets/config_client.json");
 let client = null;
 let myInfo = new type_1.ClientInfo("b213ee6e-e68d-435f-b0b2-fb30a720f05d", config.temperature, config.humidity);
+var count = 1;
 if (config.broker.port !== -1) {
     client = mqtt_1.default.connect(`mqtt://${config.broker.ip}:${config.broker.port}`);
 }
@@ -44,23 +45,23 @@ client.on("connect", () => {
             console.log(`cannot subscribe on ${config.topics_sub}`);
         if (!err)
             console.log(`complete subscribe on ${config.topics_sub}`);
-        // function periodicPrint() {
-        //   count++;
-        //   console.log(`\nTX[${count}]\n`);
-        //   console.log(`Name : ${myInfo.name}`);
-        //   console.log(`Temperature : ${myInfo.temperature}`);
-        //   console.log(`humidity : ${myInfo.humidity}`);
-        //   console.log("\n");
-        //   setTimeout(periodicPrint, 100);
-        // }
+        function periodicPrint() {
+            count++;
+            console.log(`\nTX[${count}]\n`);
+            console.log(`Name : ${myInfo.name}`);
+            console.log(`Temperature : ${myInfo.temperature}`);
+            console.log(`humidity : ${myInfo.humidity}`);
+            console.log("\n");
+            setTimeout(periodicPrint, 1000);
+        }
         pub_1.default(client, config);
-        setTimeout(pub_1.MyPub, 5000, myInfo);
-        // setTimeout(periodicPrint, 5000);
+        setTimeout(pub_1.ClientPub, 5000, myInfo);
+        setTimeout(periodicPrint, 5000);
     });
 });
 client.on("message", function (topic, message) {
     var str = message.toString();
-    var splitted = str.split("#"); //splitted.length
+    var splitted = str.split("#");
     switch (splitted[0]) {
         case "temperature":
             switch (splitted[1]) {
@@ -84,8 +85,8 @@ client.on("message", function (topic, message) {
             break;
     }
     var splitted2 = topic.split("/"); //splitted.length
-    // console.log(`\nRX[${count}]\n`);
-    // console.log(`${splitted2[0]} sent command to ME`);
-    // console.log(`Command is :\n${message}`);
+    console.log(`\nRX[${count}]\n`);
+    console.log(`${splitted2[0]} sent command to ME`);
+    console.log(`Command is :\n${message}`);
 });
 //# sourceMappingURL=client.js.map

@@ -39,9 +39,9 @@ client.on("connect", () => {
 client.on("message", function (topic, message) {
   var splitted: string[] = topic.split("/"); //splitted.length
   count++;
-  // console.log(`\nRX[${count}]\n`);
-  // console.log(`${splitted[0]} sent data to ME`);
-  // console.log(`Data is \n${message}\n`);
+  console.log(`\nRX[${count}]\n`);
+  console.log(`${splitted[0]} sent data to ME`);
+  console.log(`Data is \n${message}\n`);
   if (count == 10) {
     console.log(`[${sequence++}]  Received 10 packets`);
     count = 0;
@@ -49,4 +49,4 @@ client.on("message", function (topic, message) {
 });
 
 init(client!, config);
-//setTimeout(ServerPub, 5000, myInfo);
+setTimeout(ServerPub, 5000, myInfo);

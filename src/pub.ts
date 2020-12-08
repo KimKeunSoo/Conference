@@ -40,15 +40,16 @@ export const ServerPub = (Info: ServerInfo) => {
   sendCommand();
 };
 
-export const MyPub = (Info: ClientInfo) => {
-  for (let i = 0; i < 10; i++) {
-    client.publish(
-      config.topics_pub[0],
-      `Name : ${Info.name}\nTemperature : ${Info.temperature}\nHumidity : ${Info.humidity}`
-    );
-  }
-  console.log(`Sent 10 packets`);
-};
+// These are for loadTest
+// export const MyPub = (Info: ClientInfo) => {
+//   for (let i = 0; i < 10; i++) {
+//     client.publish(
+//       config.topics_pub[0],
+//       `Name : ${Info.name}\nTemperature : ${Info.temperature}\nHumidity : ${Info.humidity}`
+//     );
+//   }
+//   console.log(`Sent 10 packets`);
+// };
 
 export default function init(_client: MqttClient, _config: MyConfig) {
   client = _client;

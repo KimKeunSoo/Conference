@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MyPub = exports.ServerPub = exports.ClientPub = void 0;
+exports.ServerPub = exports.ClientPub = void 0;
 let initialized = false;
 let client = null;
 let config = null;
@@ -27,12 +27,16 @@ exports.ServerPub = (Info) => {
     };
     sendCommand();
 };
-exports.MyPub = (Info) => {
-    for (let i = 0; i < 10; i++) {
-        client.publish(config.topics_pub[0], `Name : ${Info.name}\nTemperature : ${Info.temperature}\nHumidity : ${Info.humidity}`);
-    }
-    console.log(`Sent 10 packets`);
-};
+// These are for loadTest
+// export const MyPub = (Info: ClientInfo) => {
+//   for (let i = 0; i < 10; i++) {
+//     client.publish(
+//       config.topics_pub[0],
+//       `Name : ${Info.name}\nTemperature : ${Info.temperature}\nHumidity : ${Info.humidity}`
+//     );
+//   }
+//   console.log(`Sent 10 packets`);
+// };
 function init(_client, _config) {
     client = _client;
     config = _config;

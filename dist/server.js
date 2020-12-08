@@ -1,11 +1,30 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const type_1 = require("./type");
 const mqtt_1 = __importDefault(require("mqtt"));
-const pub_1 = __importDefault(require("./pub"));
+const pub_1 = __importStar(require("./pub"));
 const config = require("../assets/config_server.json");
 let client = null;
 let myInfo = new type_1.ServerInfo("ServerID", "ControlTower", config.command);
@@ -36,14 +55,14 @@ client.on("connect", () => {
 client.on("message", function (topic, message) {
     var splitted = topic.split("/"); //splitted.length
     count++;
-    // console.log(`\nRX[${count}]\n`);
-    // console.log(`${splitted[0]} sent data to ME`);
-    // console.log(`Data is \n${message}\n`);
+    console.log(`\nRX[${count}]\n`);
+    console.log(`${splitted[0]} sent data to ME`);
+    console.log(`Data is \n${message}\n`);
     if (count == 10) {
         console.log(`[${sequence++}]  Received 10 packets`);
         count = 0;
     }
 });
 pub_1.default(client, config);
-//setTimeout(ServerPub, 5000, myInfo);
+setTimeout(pub_1.ServerPub, 5000, myInfo);
 //# sourceMappingURL=server.js.map
